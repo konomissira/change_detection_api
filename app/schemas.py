@@ -70,6 +70,7 @@ class MessageResponse(BaseModel):
     """Generic message response"""
 
     message: str
+    details: dict | None = None
 
 
 class HealthCheckResponse(BaseModel):
