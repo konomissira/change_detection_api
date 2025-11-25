@@ -1,0 +1,133 @@
+{
+  "snapshots": [
+    {
+      "snapshot_date": "2024-11-01T00:00:00Z",
+      "snapshot_name": "Monday Active Users",
+      "user_ids": [101, 102, 103, 104, 105, 106, 107, 108, 109, 110]
+    },
+    {
+      "snapshot_date": "2024-11-02T00:00:00Z",
+      "snapshot_name": "Tuesday Active Users",
+      "user_ids": [102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112]
+    },
+    {
+      "snapshot_date": "2024-11-03T00:00:00Z",
+      "snapshot_name": "Wednesday Active Users",
+      "user_ids": [103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115]
+    },
+    {
+      "snapshot_date": "2024-11-08T00:00:00Z",
+      "snapshot_name": "Week 1 - Active Users",
+      "user_ids": [201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215]
+    },
+    {
+      "snapshot_date": "2024-11-15T00:00:00Z",
+      "snapshot_name": "Week 2 - Active Users",
+      "user_ids": [202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220]
+    },
+    {
+      "snapshot_date": "2024-10-01T00:00:00Z",
+      "snapshot_name": "Before Product Launch",
+      "user_ids": [301, 302, 303, 304, 305, 306, 307, 308, 309, 310]
+    },
+    {
+      "snapshot_date": "2024-10-02T00:00:00Z",
+      "snapshot_name": "After Product Launch",
+      "user_ids": [301, 302, 303, 304, 305, 306, 307, 308, 309, 310, 311, 312, 313, 314, 315, 316, 317, 318, 319, 320, 321, 322, 323, 324, 325]
+    },
+    {
+      "snapshot_date": "2024-12-15T00:00:00Z",
+      "snapshot_name": "Before Holidays",
+      "user_ids": [401, 402, 403, 404, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414, 415, 416, 417, 418, 419, 420]
+    },
+    {
+      "snapshot_date": "2024-12-25T00:00:00Z",
+      "snapshot_name": "During Holidays",
+      "user_ids": [401, 403, 405, 407, 409, 411, 413, 415, 417, 419, 421, 422]
+    },
+    {
+      "snapshot_date": "2024-09-01T00:00:00Z",
+      "snapshot_name": "September - High Engagement",
+      "user_ids": [501, 502, 503, 504, 505, 506, 507, 508, 509, 510, 511, 512, 513, 514, 515, 516, 517, 518, 519, 520, 521, 522, 523, 524, 525, 526, 527, 528, 529, 530]
+    },
+    {
+      "snapshot_date": "2024-10-01T00:00:00Z",
+      "snapshot_name": "October - Slight Drop",
+      "user_ids": [502, 503, 504, 505, 506, 507, 508, 509, 510, 511, 512, 513, 514, 515, 516, 517, 518, 519, 520, 521, 522, 523, 524, 525, 526, 527, 528]
+    }
+  ],
+  "comparison_scenarios": [
+    {
+      "name": "Daily Growth - Monday to Tuesday",
+      "description": "Shows user acquisition and slight churn from Monday to Tuesday",
+      "snapshot_1": "Monday Active Users",
+      "snapshot_2": "Tuesday Active Users",
+      "expected_results": {
+        "new_users": 2,
+        "churned_users": 1,
+        "retained_users": 9,
+        "notes": "Positive growth with 95% retention"
+      }
+    },
+    {
+      "name": "Daily Growth - Tuesday to Wednesday",
+      "description": "Continued growth through the week",
+      "snapshot_1": "Tuesday Active Users",
+      "snapshot_2": "Wednesday Active Users",
+      "expected_results": {
+        "new_users": 3,
+        "churned_users": 1,
+        "retained_users": 10,
+        "notes": "Strong growth pattern"
+      }
+    },
+    {
+      "name": "Weekly Growth",
+      "description": "Week-over-week comparison showing growth trend",
+      "snapshot_1": "Week 1 - Active Users",
+      "snapshot_2": "Week 2 - Active Users",
+      "expected_results": {
+        "new_users": 5,
+        "churned_users": 1,
+        "retained_users": 14,
+        "notes": "Healthy weekly growth"
+      }
+    },
+    {
+      "name": "Product Launch Impact",
+      "description": "Major user spike after product launch",
+      "snapshot_1": "Before Product Launch",
+      "snapshot_2": "After Product Launch",
+      "expected_results": {
+        "new_users": 15,
+        "churned_users": 0,
+        "retained_users": 10,
+        "notes": "Successful launch with 150% growth"
+      }
+    },
+    {
+      "name": "Holiday Season Impact",
+      "description": "Seasonal churn during holidays",
+      "snapshot_1": "Before Holidays",
+      "snapshot_2": "During Holidays",
+      "expected_results": {
+        "new_users": 2,
+        "churned_users": 10,
+        "retained_users": 10,
+        "notes": "40% churn rate during holidays"
+      }
+    },
+    {
+      "name": "Monthly Retention",
+      "description": "September to October retention analysis",
+      "snapshot_1": "September - High Engagement",
+      "snapshot_2": "October - Slight Drop",
+      "expected_results": {
+        "new_users": 0,
+        "churned_users": 3,
+        "retained_users": 27,
+        "notes": "90% retention rate month-over-month"
+      }
+    }
+  ]
+}
