@@ -55,3 +55,6 @@ Thumbs.db
 
 # Logs
 *.log
+
+# MCP audit logs
+logs/
