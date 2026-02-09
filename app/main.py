@@ -3,6 +3,9 @@ from app.database import engine, Base
 from app.schemas import HealthCheckResponse
 from app.api.endpoints import router
 
+# Assistant router
+from assistant.router import router as assistant_router
+
 # Create database tables
 Base.metadata.create_all(bind=engine)
 
@@ -33,8 +36,9 @@ API for detecting changes between user snapshots using set operations.
     version="1.0.0",
 )
 
-# Include router
+# Include routers
 app.include_router(router)
+app.include_router(assistant_router, prefix="/assistant", tags=["assistant"])
 
 
 @app.get("/", response_model=HealthCheckResponse)
