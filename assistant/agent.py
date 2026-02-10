@@ -119,16 +119,18 @@ async def run_assistant(message: str, metadata: Optional[Dict[str, Any]] = None)
         }
         data = await _request("POST", "/api/v1/detect", json=payload)
 
-        # Provide a human explanation if the API returns metrics
+        # Provide a more human-friendly explanation using returned metrics
         explanation = "Computed changes between the two snapshots."
         if isinstance(data, dict):
-            # Try to pull out common keys without assuming exact schema
-            growth = data.get("growth_rate")
-            churn = data.get("churn_rate")
-            retention = data.get("retention_rate")
-            if any(v is not None for v in [growth, churn, retention]):
+            metrics = data.get("metrics")
+            if isinstance(metrics, dict):
                 explanation = (
-                    f"Computed changes: growth={growth}, churn={churn}, retention={retention}."
+                    f"Between snapshot {s1} and {s2}, "
+                    f"{metrics.get('new_users_count')} users joined, "
+                    f"{metrics.get('churned_users_count')} users churned, "
+                    f"and {metrics.get('retained_users_count')} users were retained. "
+                    f"This represents a growth rate of {metrics.get('growth_rate')}% "
+                    f"and a retention rate of {metrics.get('retention_rate')}%."
                 )
 
         return {

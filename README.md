@@ -12,18 +12,19 @@ A production-ready FastAPI service for detecting changes between user snapshots 
 
 ## 📋 Table of Contents
 
--   [Overview](#overview)
--   [Features](#features)
--   [Tech Stack](#tech-stack)
--   [Installation](#installation)
--   [Usage](#usage)
--   [API Endpoints](#api-endpoints)
--   [SET Operations Explained](#set-operations-explained)
--   [Testing](#testing)
--   [Project Structure](#project-structure)
--   [Real-World Use Cases](#real-world-use-cases)
--   [Contributing](#contributing)
--   [License](#license)
+- [Overview](#overview)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Installation](#installation)
+- [Usage](#usage)
+- [AI Assistant](#-ai-assistant)
+- [API Endpoints](#api-endpoints)
+- [SET Operations Explained](#set-operations-explained)
+- [Testing](#testing)
+- [Project Structure](#project-structure)
+- [Real-World Use Cases](#real-world-use-cases)
+- [Contributing](#contributing)
+- [License](#license)
 
 ---
 
@@ -33,9 +34,9 @@ This API demonstrates efficient change detection techniques for comparing user s
 
 **Real-World Scenario:**
 
--   Yesterday: 10,000 active users
--   Today: 10,250 active users
--   **Who's new? Who churned? Who stayed?**
+- Yesterday: 10,000 active users
+- Today: 10,250 active users
+- **Who's new? Who churned? Who stayed?**
 
 This API answers those questions **instantly** using SET operations!
 
@@ -45,19 +46,19 @@ This API answers those questions **instantly** using SET operations!
 
 ### Core Functionality
 
--   **Create User Snapshots** - Store user IDs at different points in time
--   **Detect Changes** - Compare snapshots to find new, churned, and retained users
--   **Calculate Metrics** - Growth rate, churn rate, and retention rate
--   **Track Historical Data** - Store and query past comparisons
+- **Create User Snapshots** - Store user IDs at different points in time
+- **Detect Changes** - Compare snapshots to find new, churned, and retained users
+- **Calculate Metrics** - Growth rate, churn rate, and retention rate
+- **Track Historical Data** - Store and query past comparisons
 
 ### Technical Features
 
--   **Fast SET Operations** - O(n) time complexity for change detection
--   **RESTful API** - Clean, documented endpoints with Swagger UI
--   **Docker Containerized** - Easy deployment and consistent environment
--   **Comprehensive Tests** - 18 pytest tests with 100% coverage
--   **Well Documented** - Complete API docs and usage examples
--   **Modern Python** - Type hints, async support, pyproject.toml
+- **Fast SET Operations** - O(n) time complexity for change detection
+- **RESTful API** - Clean, documented endpoints with Swagger UI
+- **Docker Containerized** - Easy deployment and consistent environment
+- **Comprehensive Tests** - 18 pytest tests with 100% coverage
+- **Well Documented** - Complete API docs and usage examples
+- **Modern Python** - Type hints, async support, pyproject.toml
 
 ---
 
@@ -79,8 +80,8 @@ This API answers those questions **instantly** using SET operations!
 
 ### Prerequisites
 
--   Docker & Docker Compose installed
--   Git
+- Docker & Docker Compose installed
+- Git
 
 ### Quick Start
 
@@ -125,15 +126,56 @@ docker compose exec api python data/seed_data.py
 
 This creates:
 
--   13 user snapshots
--   9 change detection analyses
--   5 realistic scenarios (growth, spike, seasonal drop, etc.)
+- 13 user snapshots
+- 9 change detection analyses
+- 5 realistic scenarios (growth, spike, seasonal drop, etc.)
 
 ### Option 3: Manual Testing
 
 See `data/README.md` for step-by-step manual testing guide.
 
 ---
+
+## AI Assistant
+
+This project includes a **governed AI-style assistant** that allows users to interact with the API using natural language.
+
+### AI Endpoint
+
+```
+POST /assistant/chat
+```
+
+### Example
+
+```bash
+curl -X POST http://localhost:8000/assistant/chat   -H "Content-Type: application/json"   -d '{"message":"Compare snapshots 1 and 2"}'
+```
+
+### Sample Response
+
+```json
+{
+    "action": "detect_changes",
+    "explanation": "Between snapshot 1 and 2, 15 users joined, 5 users churned, and 95 users were retained. This represents a growth rate of 10.0% and a retention rate of 95.0%.",
+    "result": {
+        "analysis": { "...": "..." }
+    }
+}
+```
+
+### Discoverability
+
+```
+GET /assistant/examples
+```
+
+### Design Notes
+
+- Deterministic (rule-based) assistant — no LLM required
+- Audited and logged for governance
+- Same data contracts as the core API
+- Designed to integrate with MCP-based AI clients
 
 ## API Endpoints
 
@@ -203,9 +245,9 @@ snapshot_2_users - snapshot_1_users
 
 **Example:**
 
--   Monday: `[101, 102, 103]`
--   Tuesday: `[102, 103, 104, 105]`
--   **New Users:** `[104, 105]` ← Tuesday - Monday
+- Monday: `[101, 102, 103]`
+- Tuesday: `[102, 103, 104, 105]`
+- **New Users:** `[104, 105]` ← Tuesday - Monday
 
 ### 2. SET DIFFERENCE (B - A) → Churned Users
 
@@ -216,9 +258,9 @@ snapshot_1_users - snapshot_2_users
 
 **Example:**
 
--   Monday: `[101, 102, 103]`
--   Tuesday: `[102, 103, 104, 105]`
--   **Churned Users:** `[101]` ← Monday - Tuesday
+- Monday: `[101, 102, 103]`
+- Tuesday: `[102, 103, 104, 105]`
+- **Churned Users:** `[101]` ← Monday - Tuesday
 
 ### 3. SET INTERSECTION (A ∩ B) → Retained Users
 
@@ -229,9 +271,9 @@ snapshot_1_users & snapshot_2_users
 
 **Example:**
 
--   Monday: `[101, 102, 103]`
--   Tuesday: `[102, 103, 104, 105]`
--   **Retained Users:** `[102, 103]` ← Monday ∩ Tuesday
+- Monday: `[101, 102, 103]`
+- Tuesday: `[102, 103, 104, 105]`
+- **Retained Users:** `[102, 103]` ← Monday ∩ Tuesday
 
 ### Calculated Metrics
 
@@ -274,13 +316,13 @@ docker compose exec api pytest --cov=app --cov-report=term-missing
 
 **Test Scenarios:**
 
--   Create, read, update, delete snapshots
--   Duplicate snapshot name rejection
--   Change detection with growth
--   Change detection with churn
--   Perfect retention (no changes)
--   Complete turnover (all new users)
--   Invalid snapshot IDs
+- Create, read, update, delete snapshots
+- Duplicate snapshot name rejection
+- Change detection with growth
+- Change detection with churn
+- Perfect retention (no changes)
+- Complete turnover (all new users)
+- Invalid snapshot IDs
 
 ---
 
@@ -368,8 +410,8 @@ APP_PORT=8000
 
 ### Docker Compose Services
 
--   **postgres** - PostgreSQL database (port 5432)
--   **api** - FastAPI application (port 8000)
+- **postgres** - PostgreSQL database (port 5432)
+- **api** - FastAPI application (port 8000)
 
 ---
 
@@ -387,19 +429,19 @@ Contributions are welcome! Please follow these steps:
 
 ## 📊 Performance
 
--   **Time Complexity:** O(n) for change detection (SET operations)
--   **Space Complexity:** O(n) for storing user IDs
--   **Database Queries:** Optimised with indexes on date and name fields
--   **Response Time:** < 100ms for typical comparisons
+- **Time Complexity:** O(n) for change detection (SET operations)
+- **Space Complexity:** O(n) for storing user IDs
+- **Database Queries:** Optimised with indexes on date and name fields
+- **Response Time:** < 100ms for typical comparisons
 
 ---
 
 ## 📚 Documentation
 
--   **API Docs (Swagger):** http://localhost:8000/docs
--   **ReDoc:** http://localhost:8000/redoc
--   **Manual Testing Guide:** `data/README.md`
--   **Sample Data:** `data/sample_snapshots.json`
+- **API Docs (Swagger):** http://localhost:8000/docs
+- **ReDoc:** http://localhost:8000/redoc
+- **Manual Testing Guide:** `data/README.md`
+- **Sample Data:** `data/sample_snapshots.json`
 
 ---
 
@@ -446,7 +488,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Mahamadou**
 
--   GitHub: [@konomissira](https://github.com/konomissira)
+- GitHub: [@konomissira](https://github.com/konomissira)
 
 ---
 
