@@ -1,9 +1,13 @@
 from fastapi import APIRouter, HTTPException
+
 from assistant.audit import log_assistant_action
 from assistant.schemas import AssistantChatRequest, AssistantChatResponse
 from assistant.agent import run_assistant
+from assistant.examples import router as examples_router
 
 router = APIRouter()
+
+router.include_router(examples_router)
 
 
 @router.post("/chat", response_model=AssistantChatResponse)
